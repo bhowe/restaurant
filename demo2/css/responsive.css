@@ -1,0 +1,88 @@
+/* 25 Degrees Chicago */
+
+@media only screen and (max-width: 1340px){
+	.page-wrapper{
+		overflow:hidden;	
+	}
+}
+
+@media only screen and (max-width: 1140px){
+	.main-menu .navigation > li{
+		margin:0px 10px;	
+	}
+	
+	.main-menu .navigation > li > a{
+		font-size:14px;	
+	}
+	
+	.fixed-menu .navigation > li{
+		margin-left:15px;	
+	}
+	
+	.fixed-menu .navigation > li > a{
+		font-size:14px;	
+	}
+}
+
+@media only screen and (max-width: 1023px){
+	
+}
+
+@media only screen and (min-width: 768px){
+	.mobile-nav.nav-visible{
+		left:-102%;
+	}
+	
+}
+
+@media only screen and (max-width: 767px){
+	.main-header .header-fixed-bar{
+		opacity:1;
+		visibility:visible;	
+	}
+
+	.main-header .header-upper .logo-box{
+		max-width:120px;
+		margin:80px auto 20px;	
+	}
+	
+	.main-menu,
+	.fixed-menu{
+		display:none;	
+	}
+	
+	.main-header .header-fixed-bar .mobile-nav-btn{
+		display:block;
+	}
+	
+	.main-banner .banner-inner{
+		height:680px !important;
+		min-height:680px !important;	
+	}
+	
+	.main-banner .banner-content{
+		margin-top:0px !important;
+		top:180px !important;	
+	}
+	
+	.main-banner .banner-content .text{
+		font-size:16px;
+		opacity:1;
+		margin-bottom:30px;	
+	}
+	
+	.main-banner .banner-content .text:before{
+		display:none;	
+	}
+}
+
+@media only screen and (max-width: 599px){
+	
+	
+}
+
+@media only screen and (max-width: 479px) {
+	
+	
+	
+}
