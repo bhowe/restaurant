@@ -11,50 +11,39 @@
 	}
 
 
-	//Update Header Style and Scroll to Top
-	function headerStyle() {
-		if($('.main-header').length){
-			var scrollCLickLink = $('.scroll-to-top');
-			var MainHeader = $('.main-header');
-			var windowpos = $(window).scrollTop();
-			
-			if (windowpos >= 100) {
-				MainHeader.addClass('fixed-header');
-				scrollCLickLink.fadeIn(300);
-			} else {
-				MainHeader.removeClass('fixed-header');
-				scrollCLickLink.fadeOut(300);
-			}
-		}
-	}
-
-	headerStyle();
-
-	//Mobile Menu Toggle
-	if($('.mobile-nav').length){
-		$('.main-header .mobile-nav-btn').on('click', function() {
-			$('.mobile-nav').toggleClass('nav-visible');
+	//Show / Hide Mobile Nav
+	if($('.mobile-nav-toggler').length){
+		$('.mobile-nav-toggler').on('click', function(e) {
+			e.preventDefault();
+			$('body').toggleClass('mobile-nav-visible');
 		});
-		$('.mobile-nav .close-nav').on('click', function() {
-			$('.mobile-nav').removeClass('nav-visible');
-		});
-		
-		//Custom Scroll for Sidebar
-		$('.mobile-nav .inner').mCustomScrollbar();
-		
 	}
 	
-	//Main Slider
-	if ($('.image-slider').length) {
-		$('.image-slider').owlCarousel({
-			animateOut: 'fadeOut',
-    		animateIn: 'fadeIn',
+	//Mobile Nav Dropdown Toggle
+	if($('.mobile-nav .navigation > li.dropdown > a').length){
+		
+		//Dropdown Button
+		$('.mobile-nav .navigation > li.dropdown > a').on('click', function(e) {
+			e.preventDefault();
+			$(this).toggleClass('open');
+			$(this).next('ul').slideToggle(500);
+		});
+	}
+
+	
+	//Banner Left Slider
+	if ($('.left-slider-box .banner-left-slider').length) {
+		$('.left-slider-box .banner-left-slider').owlCarousel({
+			animateOut: 'slideOutLeft',
+    		animateIn: 'slideInLeft',
 			loop:true,
 			mouseDrag:false,
 			margin:0,
 			nav:true,
-			smartSpeed: 700,
+			smartSpeed: 1500,
+			autoplaySpeed: 1500,
 			autoplay: true,
+			autoplayTimeout:5000,
 			navText: [ '<span class="fa fa-angle-left"></span>', '<span class="fa fa-angle-right"></span>' ],
 			responsive:{
 				0:{
@@ -73,13 +62,81 @@
 		});    		
 	}
 	
-	//Main Slider Height
-	function mainSliderHeight() {
-			var windowH = $(window).height();
-			$('.main-slider .image-slider .slide-item').css('height',windowH-84);
+	
+	//Banner Right Slider
+	if ($('.right-slider-box .banner-right-slider').length) {
+		$('.right-slider-box .banner-right-slider').owlCarousel({
+			animateOut: 'slideOutRight',
+    		animateIn: 'slideInRight',
+			loop:true,
+			mouseDrag:false,
+			margin:0,
+			nav:true,
+			smartSpeed: 1500,
+			autoplaySpeed: 1500,
+			autoplay: true,
+			autoplayTimeout:5000,
+			navText: [ '<span class="fa fa-angle-left"></span>', '<span class="fa fa-angle-right"></span>' ],
+			responsive:{
+				0:{
+					items:1
+				},
+				600:{
+					items:1
+				},
+				800:{
+					items:1
+				},
+				1200:{
+					items:1
+				}
+			}
+		});    		
 	}
 	
-	mainSliderHeight();
+	
+	//Banner Mid Slider
+	if ($('.mid-slider-box .banner-mid-slider').length) {
+		$('.mid-slider-box .banner-mid-slider').owlCarousel({
+			animateOut: 'fadeOut',
+    		animateIn: 'fadeIn',
+			loop:true,
+			mouseDrag:false,
+			margin:0,
+			nav:true,
+			smartSpeed: 1500,
+			autoplaySpeed: 1500,
+			autoplay: true,
+			autoplayTimeout:5000,
+			navText: [ '<span class="fa fa-angle-left"></span>', '<span class="fa fa-angle-right"></span>' ],
+			responsive:{
+				0:{
+					items:1
+				},
+				600:{
+					items:1
+				},
+				800:{
+					items:1
+				},
+				1200:{
+					items:1
+				}
+			}
+		});    		
+	}
+	
+	
+	//LightBox / Fancybox
+	if($('.lightbox-image').length) {
+		$('.lightbox-image').fancybox({
+			openEffect  : 'fade',
+			closeEffect : 'fade',
+			helpers : {
+				media : {}
+			}
+		});
+	}
 	
 
 	// Scroll to a Specific Div
@@ -95,12 +152,26 @@
 	}
 
 
+	// Elements Animation
+	if($('.wow').length){
+		var wow = new WOW(
+		  {
+			boxClass:     'wow',      // animated element css class (default is wow)
+			animateClass: 'animated', // animation css class (default is animated)
+			offset:       0,          // distance to the element when triggering the animation (default is 0)
+			mobile:       true,       // trigger animations on mobile devices (default is true)
+			live:         true       // act on asynchronously loaded content (default is true)
+		  }
+		);
+		wow.init();
+	}
+
+
 /* ==========================================================================
    When document is Scrollig, do
    ========================================================================== */
 
 	$(window).on('scroll', function() {
-		headerStyle();
 	});
 	
 
@@ -109,7 +180,7 @@
    ========================================================================== */
 
 	$(window).on('resize', function() {
-		mainSliderHeight();
+		
 	});
 
 /* ==========================================================================
@@ -118,7 +189,6 @@
 
 	$(window).on('load', function() {
 		handlePreloader();
-		mainSliderHeight();
 	});
 
 
